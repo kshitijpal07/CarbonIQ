@@ -1,100 +1,150 @@
-import React, { useState, useEffect } from 'react';
-import StatsCards from './StatsCards';
-import CreditTable from './CreditTable';
-import ActivityFeed from './ActivityFeed';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Header from '../Layout/Header';
 import { useWeb3 } from '../../hooks/useWeb3';
-import './Dashboard.css';
+
+const credits = [
+  {
+    project: "Renewable Energy Project",
+    quantity: 300,
+    vintage: "20 mm",
+    status: "Verified",
+  },
+  {
+    project: "Reforestation Initiative",
+    quantity: 100,
+    vintage: "21 apr",
+    status: "Pending",
+  },
+  {
+    project: "Methane Capture Program",
+    quantity: 200,
+    vintage: "20 gar",
+    status: "Testest",
+  },
+  {
+    project: "Soil Carbon Sequestration",
+    quantity: 300,
+    vintage: "30 set",
+    status: "Verified",
+  },
+];
+
+function StatusBadge({ status }) {
+  let className = "status verified";
+  
+  if (status === "Pending") {
+    className = "status pending";
+  } else if (status === "Testest") {
+    className = "status testest";
+  }
+  
+  return <span className={className}>{status}</span>;
+}
 
 const Dashboard = () => {
-  const { account, isConnected } = useWeb3();
-  const [stats, setStats] = useState({
-    totalCredits: 0,
-    verifiedCredits: 0,
-    pendingCredits: 0,
-    totalValue: 0
-  });
-
-  const [recentCredits, setRecentCredits] = useState([]);
-  const [activities, setActivities] = useState([]);
-
-  useEffect(() => {
-    if (isConnected && account) {
-      fetchDashboardData();
-    }
-  }, [isConnected, account]);
-
-  const fetchDashboardData = async () => {
-    // Mock data - replace with actual API calls
-    setStats({
-      totalCredits: 1250,
-      verifiedCredits: 950,
-      pendingCredits: 300,
-      totalValue: 62500
-    });
-
-    setRecentCredits([
-      {
-        id: 1,
-        project: "Solar Farm Initiative",
-        quantity: 500,
-        vintage: "2024",
-        status: "Verified",
-        co2Offset: 250
-      },
-      {
-        id: 2,
-        project: "Reforestation Project",
-        quantity: 300,
-        status: "Pending",
-        co2Offset: 150
-      }
-    ]);
-
-    setActivities([
-      {
-        id: 1,
-        type: "verification",
-        message: "Solar Farm Initiative verified successfully",
-        timestamp: new Date().toISOString()
-      },
-      {
-        id: 2,
-        type: "trade",
-        message: "Sold 100 credits to EcoTech Corp",
-        timestamp: new Date(Date.now() - 3600000).toISOString()
-      }
-    ]);
-  };
+  const { isConnected } = useWeb3();
 
   if (!isConnected) {
     return (
-      <div className="dashboard-empty">
-        <div className="empty-state">
-          <h2>Welcome to CarbonIQ</h2>
-          <p>Connect your wallet to start managing carbon credits</p>
+      <div className="dashboard-container">
+        <Header />
+        <div className="dashboard-empty">
+          <div className="empty-state">
+            <h2>Welcome to CarbonIQ Dashboard</h2>
+            <p>Connect your wallet to start managing carbon credits</p>
+            <Link to="/" className="back-to-welcome">
+              ← Back to Welcome
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="dashboard">
-      <div className="dashboard-header">
-        <h2>Dashboard Overview</h2>
-        <p>Track your carbon credit portfolio and environmental impact</p>
-      </div>
-
-      <StatsCards stats={stats} />
-      
-      <div className="dashboard-grid">
-        <div className="dashboard-section">
-          <CreditTable credits={recentCredits} />
+    <div className="dashboard-container">
+      <aside className="sidebar">
+        <div className="logo">
+          <div className="logo-icon">🌱</div>
+          <span>CarbonIQ</span>
         </div>
+        <nav>
+          <a href="#" className="active">
+            <span className="icon">📋</span> Dashboard
+          </a>
+          <a href="#">
+            <span className="icon">💳</span> Credits
+          </a>
+          <a href="#">
+            <span className="icon">📁</span> Projects
+          </a>
+          <a href="#">
+            <span className="icon">🕒</span> Activity
+          </a>
+        </nav>
         
-        <div className="dashboard-section">
-          <ActivityFeed activities={activities} />
+        <div className="sidebar-footer">
+          <Link to="/" className="back-link">
+            ← Back to Welcome
+          </Link>
         </div>
-      </div>
+      </aside>
+      
+      <main className="main-content">
+        <Header />
+        
+        <div className="dashboard-content">
+          <h1>Welcome to CarbonIQ</h1>
+          <p className="subtitle">Your platform for managing carbon credits.</p>
+          
+          <div className="top-cards">
+            <div className="card balance-card">
+              <div className="balance-content">
+                <span className="balance-label">Total Balance</span>
+                <h2>1,200</h2>
+                <span className="balance-unit">carbon credits</span>
+              </div>
+            </div>
+            
+            <div className="card icon-card">
+              <div className="leaf-icon">
+                <svg width="48" height="48" viewBox="0 0 48 48">
+                  <circle cx="24" cy="24" r="22" fill="#e8f5e9"/>
+                  <path d="M16 32c6-8 16-8 16-8s-2 10-8 10-8-2-8-2z" fill="#66bb6a"/>
+                  <path d="M24 28l4-8" stroke="#388e3c" strokeWidth="2" fill="none"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <div className="card credits-table">
+            <h3>Carbon Credits</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Project</th>
+                  <th>Quantity</th>
+                  <th>Vintage</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {credits.map((credit, index) => (
+                  <tr key={index}>
+                    <td>{credit.project}</td>
+                    <td>{credit.quantity}</td>
+                    <td>{credit.vintage}</td>
+                    <td>
+                      <StatusBadge status={credit.status} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
     </div>
   );
 };
