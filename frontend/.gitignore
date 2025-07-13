@@ -1,29 +1,19 @@
-
-# Dependencies
+# dependencies
 node_modules/
-npm-debug.log*
 
-# Production build
+# production
 build/
 dist/
 
-# Environment variables
+# misc
+.DS_Store
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# IDE files
+# IDEs
 .vscode/
 .idea/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-
-# Package lock (choose one)
-package-lock.json
