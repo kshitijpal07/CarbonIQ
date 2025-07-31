@@ -28,7 +28,7 @@ const Calculator = () => {
         formData.append('bill', billFile);
 
         try {
-            const response = await axios.post('http://localhost:5001/api/calculate-from-bill', formData, {
+            const response = await axios.post('https://carboniq-hrsy.onrender.com/api/calculate-from-bill', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             // Set the result to be displayed on the page
