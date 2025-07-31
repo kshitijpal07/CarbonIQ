@@ -65,7 +65,8 @@ def handle_bill_upload():
         # ====================================================================
         # === IMPORTANT: INSERT YOUR GEMINI API KEY HERE ===
         # ====================================================================
-        gemini_api_key = "AIzaSyDdY2MWmpUIs9YOg8JpSN0Mi3lxFSe94PM" 
+        gemini_api_key = os.environ.get("GEMINI_API_KEY")
+
         # ====================================================================
         
         if gemini_api_key == "YOUR_GEMINI_API_KEY":
