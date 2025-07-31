@@ -5,20 +5,22 @@ import './Sidebar.css';
 const Sidebar = () => {
   return (
     <aside className="sidebar">
+      {/* START: Add this section for the logo and title */}
       <div className="logo">
         <div className="logo-icon">🌱</div>
         <span className="logo-text">CarbonIQ</span>
       </div>
+      {/* END: Add this section */}
       
       <nav className="nav-menu">
-        <NavLink to="/" className="nav-item">
+        <NavLink to="/dashboard" end className="nav-item">
           <span className="nav-icon">📊</span>
           <span className="nav-text">Dashboard</span>
         </NavLink>
-        
-        <NavLink to="/credits" className="nav-item">
-          <span className="nav-icon">💳</span>
-          <span className="nav-text">My Credits</span>
+
+        <NavLink to="/dashboard/calculator" className="nav-item">
+          <span className="nav-icon">🧮</span>
+          <span className="nav-text">Calculator</span>
         </NavLink>
         
         <NavLink to="/verification" className="nav-item">

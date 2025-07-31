@@ -1,0 +1,73 @@
+/* Specific styles for the Dashboard content */
+.subtitle {
+    color: #6c757d;
+    margin-bottom: 2rem;
+}
+
+.top-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.balance-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.balance-card h2 {
+    font-size: 2.5rem;
+    margin: 0.5rem 0;
+}
+
+.credits-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.credits-table th, .credits-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.credits-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Status Badge Styles */
+.status {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.status.verified {
+    background-color: #e8f5e9; /* Light Green */
+    color: #388e3c;
+}
+
+.status.pending {
+    background-color: #fff3e0; /* Light Orange */
+    color: #f57c00;
+}
+
+.status.testest {
+    background-color: #fce4ec; /* Light Pink */
+    color: #d81b60;
+}

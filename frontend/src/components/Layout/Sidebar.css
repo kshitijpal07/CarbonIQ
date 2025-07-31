@@ -1,0 +1,64 @@
+.sidebar {
+  width: 260px;
+  flex-shrink: 0;
+  background-color: #1f4e3d;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* START: Add these styles for the logo */
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-icon {
+  font-size: 2rem;
+  margin-right: 0.75rem;
+}
+
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+/* END: Add these styles */
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.nav-item.active {
+  background-color: #10b981;
+  color: white;
+  font-weight: 600;
+}
+
+.nav-icon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
